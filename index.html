@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Deepthi</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon.png">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<script>
+    var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) {
+            delta /= 2;
+        }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+        }
+
+        setTimeout(function() {
+            that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i = 0; i < elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+                new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+    };
+</script>
+
+
+<body>
+
+    <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+
+                    <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+
+
+                </div>
+                <!-- /.navbar-header -->
+
+                <div class="main-menu" id="portfolio-perfect-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="page-scroll"><a href="#hero">Home</a></li>
+                        <li class="page-scroll"><a href="#about">About</a></li>
+                        <li class="page-scroll"><a href="#service">Education</a></li>
+                        <li class="page-scroll"><a href="#portfolio">Portfolio</a></li>
+                        <li class="page-scroll"><a href="#contact">Contact</a></li>
+
+                    </ul>
+                    <!-- /.navbar-nav -->
+
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+        </nav>
+        <!-- /.primary-navigation -->
+    </header>
+    <!-- /#header -->
+
+    <div id="hero" class="hero">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h1>
+                        <a href="" class="typewrite" data-period="2000" data-type='[ "Hi, Im Deepthi.", "I am Creative.", "I Love Design.", "I Love to Develop." ]'>
+                            <span class="wrap"></span>
+                        </a>
+                    </h1>
+                    <div class="page-scroll">
+                        <p class="job-title">Application Developer</p>
+                        <a href="#contact" class="btn btn-fill ">Hire me</a>
+                        <div class="clearfix visible-xxs"></div>
+                        <a href="#portfolio" class="btn btn-border">Explore more</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-right">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.hero -->
+
+    <main id="main" class="site-main">
+
+        <section id="about" class="site-section section-about text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <h2>About</h2>
+                        <img src="assets/img/lines.svg" class="img-lines" alt="lines">
+                        <p>Hello! I'm Deepthi, a Application developer, a Ruby enthusiast, and slighty obsessed for code quality. Also I'm a co-founder of FYIT. I’m currently available for freelance work. If you have a project that you want to get started
+                            or think you need my help with something, then get in touch.</p>
+                        <a href="" class="btn btn-fill" target="_blank" download>Download My Cv</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.secton-about -->
+
+        <section class="site-section section-skills">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My Skills</h3>
+                    <img src="assets/img/lines.svg" class="img-lines" alt="lines">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>Html/css</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="100"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                        <div class="skill">
+                            <h4>Python</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="95"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>Javascript</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="82"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                        <div class="skill">
+                            <h4>SQL</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="85"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4>C++</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="97"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                        <div class="skill">
+                            <h4>Java</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="75"></div>
+                                <!-- /.progress-bar -->
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.secton-skills -->
+
+        <section id="service" class="site-section section-services overlay text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Skill & Education </h3>
+                        <img src="assets/img/lines.svg" class="img-lines" alt="lines">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="service">
+                            <h4>Recent Work</h4>
+                            <p>As a Application developer, I have Developed an Application<br> FYIT Downloader<strong>Reached more than 1000 Downloads</strong></p>
+                        </div>
+                        <!-- /.service -->
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="service">
+                            <h4>Schooling</h4>
+                            <p>While Doing My High Secondary I was <strong>Interested in Programming I Self Learned Python</strong></p>
+                        </div>
+                        <!-- /.service -->
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="service">
+                            <h4>College</h4>
+                            <p>Pursuing in KGiSL Institute of Technology<br><strong>Currently Interested in doing the Project Works</strong></p>
+                        </div>
+                        <!-- /.service -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.secton-services -->
+
+        <section id="portfolio" class="site-section section-portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My recent Works</h3>
+                    <img src="assets/img/lines.svg" class="img-lines" alt="lines">
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <img src="data:image/jpeg;base64,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"
+                                class="img-res" alt="FYIT Downloader">
+                            <div class="portfolio-item-info">
+                                <h4>FYIT Downloader</h4>
+                                <a href="https://fyit.noads.biz"><span class="glyphicon glyphicon-link"></span></a>
+                            </div>
+                            <!-- /.portfolio-item-info -->
+                        </div>
+                        <!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <img src="assets/img/portfolio-2.jpg" class="img-res" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>Snake Game</h4>
+                                <a href="#"><span class="glyphicon glyphicon-link"></span></a>
+                            </div>
+                            <!-- /.portfolio-item-info -->
+                        </div>
+                        <!-- /.portfolio-item -->
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="portfolio-item">
+                            <img src="assets/img/portfolio-3.jpg" class="img-res" alt="">
+                            <div class="portfolio-item-info">
+                                <h4>MVC Pattern in JAVA</h4>
+                                <a href="#"><span class="glyphicon glyphicon-link"></span></a>
+                            </div>
+                            <!-- /.portfolio-item-info -->
+                        </div>
+                        <!-- /.portfolio-item -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.secton-portfolio -->
+
+        <section class="site-section section-counters text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <p class="counter start" data-to="3" data-speed="2000">0</p>
+                        <h4>Application Development Experience</h4>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <p class="counter start" data-to="5" data-speed="2000">0</p>
+                        <h4>Projects Delivered</h4>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <p id="infinity" class="counter" data-from="0" data-to="1" data-speed="1000">0</p>
+                        <h4>Seconds on this site!<br>What are you waiting for?</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.section-counters -->
+
+        <section id="contact" class="site-section section-form text-center">
+            <div class="container">
+
+                <h3>Contact</h3>
+                <img src="assets/img/lines.svg" class="img-lines" alt="lines">
+                <form action="https://formspree.io/f/mvovgjkk" method="POST">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="name" class="form-control mt-x-0" placeholder="Name" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea name="message" id="mesaage" class="form-control" placeholder="Message" required></textarea>
+                        </div>
+                    </div>
+                    <button href="#" class="btn btn-border" type="submit">Hire Me <span class="glyphicon glyphicon-send"></span></button>
+                </form>
+            </div>
+        </section>
+        <!-- /.section-form -->
+
+    </main>
+    <!-- /#main -->
+
+    <footer id="colophon" class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <a class="icon facebook-bg" href="#"><i class="icon-facebook"></i></a>
+                    <a class="icon twitter-bg" href="#"><i class="icon-twitter"></i></a>
+                    <a class="icon gplus-bg" href="#"><i class="icon-linkedin"></i></a>
+                    <a class="icon linkedin-bg" href="#"><i class="icon-gplus"></i></a>
+                </div>
+                <div class="col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-3">
+                    <p class="copyright">By Deepthi</p>
+                </div>
+                <div class="col-sm-4 col-xs-3">
+                    <div class="text-right page-scroll">
+                        <a class="icon icon-up-bg" href="#hero"><i class="icon-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /#footer -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="assets/js/skrollr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
+    <script src="assets/js/jquery.countTo.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
